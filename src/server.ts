@@ -1,23 +1,18 @@
-import dotenv from 'dotenv';
-dotenv.config();
-// import cors from 'cors';
+// server.ts
 import express from 'express';
-import { connectionTest } from './db.js';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import router from '../routes/products'; // Updated import
+
+dotenv.config();
 
 const PORT = Number(process.env.PORT);
-// const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: CLIENT_URL,
-//   })
-// );
-// app.use(express.json());
+app.use(cors());
 
-
+app.use('/products', router);
 
 app.listen(PORT, () => {
-  connectionTest();
   console.log(`API is ready on http://localhost:${PORT}`);
 });
