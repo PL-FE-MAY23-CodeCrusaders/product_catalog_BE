@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 // import cors from 'cors';
 import express from 'express';
-import { connectionTest } from './db'
+import { connectionTest } from './db.js';
 
 const PORT = Number(process.env.PORT);
 // const CLIENT_URL = process.env.CLIENT_URL;
