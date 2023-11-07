@@ -1,6 +1,6 @@
 // routes/products.js
 import express from 'express';
-import Product from '../models/Product'; // Import your Sequelize Product model
+import Product from '../models/Product';
 
 const router = express.Router();
 
@@ -26,6 +26,23 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error('Error fetching products:', error);
     res.status(500).json({ error: 'An error occurred while fetching products' });
+  }
+});
+
+//GET /products/new
+router.get('/new', async (req, res) => {
+  const limit = parseInt(req.query.limit) || 5; // limit ilości produktów, zmieniać wedle uznania, 
+
+  try {
+    const newProducts = await Product.findAll({
+      where: { year: new Date().getFullYear() },
+      limit: limit,
+    });
+
+    res.json(newProducts);
+  } catch (error) {
+    console.error('Error fetching new products:', error);
+    res.status(500).json({ error: 'An error occurred while fetching new products' });
   }
 });
 
