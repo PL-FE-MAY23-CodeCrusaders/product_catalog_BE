@@ -4,7 +4,7 @@ import { sequelize } from '../src/db';
 
 const Product = sequelize.define('Product', {
   id: {
-    type: DataTypes.STRING, // Use STRING for the 'id' field
+    type: DataTypes.STRING,
     primaryKey: true,
   },
   category: {
