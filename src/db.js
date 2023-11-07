@@ -31,3 +31,5 @@ export async function connectionTest() {
     console.error('Połączenie nie udało się.', error);
   }
 }
+
+export { sequelize };
