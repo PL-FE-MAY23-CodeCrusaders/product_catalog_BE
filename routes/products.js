@@ -1,5 +1,6 @@
 // routes/products.js
 import express from 'express';
+import { Op } from 'sequelize';
 import Product from '../models/Product';
 
 const router = express.Router();
@@ -43,6 +44,20 @@ router.get('/new', async (req, res) => {
   } catch (error) {
     console.error('Error fetching new products:', error);
     res.status(500).json({ error: 'An error occurred while fetching new products' });
+  }
+});
+
+//GET/products/discount
+router.get('/discount', async (req, res) => {
+  try {
+    const discountProducts = await Product.findAll({
+      where: { price: { [Op.lt]: 400 } }, // Tu zmieniamy od jakiej ceny w dół powinny pojawiać się produkty np. teraz od 400 w dół
+    });
+
+    res.json(discountProducts);
+  } catch (error) {
+    console.error('Error fetching discount products:', error);
+    res.status(500).json({ error: 'An error occurred while fetching discount products' });
   }
 });
 
