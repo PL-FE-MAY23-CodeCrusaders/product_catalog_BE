@@ -61,4 +61,22 @@ router.get('/discount', async (req, res) => {
   }
 });
 
+// GET /products/:id
+router.get('/:id', async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+    const product = await Product.findByPk(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error('Error fetching product by ID:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the product' });
+  }
+});
+
 export default router;
