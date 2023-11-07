@@ -17,13 +17,4 @@ app.listen(PORT, () => {
   console.log(`API is ready on http://localhost:${PORT}`);
 });
 
-async function checkDatabaseConnection() {
-  try {
-    await connectionTest();
-    console.log('Database connection established successfully.');
-  } catch (error) {
-    console.error('Failed to establish a database connection:', error);
-  }
-}
-
-checkDatabaseConnection();
+connectionTest();
