@@ -1,5 +1,1 @@
-node_modules
-.husky
-build
-.env
-dist
+/node_modules
